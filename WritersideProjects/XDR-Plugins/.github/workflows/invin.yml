@@ -1,0 +1,25 @@
+name: Build and Publish Document
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Document
+        # Add commands here to build your document
+        run: |
+          # Example: use pandoc to convert Markdown to HTML
+          pandoc -s WritersideProjects\XDR-Plugins\your_document.md -o WritersideProjects\XDR-Plugins\your_document.html
+
+      - name: Publish Document
+        uses: actions/upload-artifact@v2
+        with:
+          name: your-document
+          path: WritersideProjects\XDR-Plugins\your_document.html
