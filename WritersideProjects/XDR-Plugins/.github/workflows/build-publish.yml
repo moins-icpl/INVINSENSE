@@ -1,0 +1,23 @@
+name: Build and Publish Document
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract Document
+        run: |
+          unzip -q webHelpHI2-all.zip -d extracted_document
+
+      - name: Publish Document
+        uses: actions/upload-artifact@v2
+        with:
+          name: webHelpHI2-all
+          path: extracted_document
